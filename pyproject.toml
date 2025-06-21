@@ -1,0 +1,10 @@
+[project]
+name = "apa-checker"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "python-docx>=1.2.0",
+    "rich>=14.0.0",
+]
