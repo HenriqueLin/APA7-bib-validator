@@ -1,3 +1,8 @@
+[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
+[![uv](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json)](https://github.com/astral-sh/uv)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+![Python](https://shields.io/badge/python-3.10-blue)
+
 # APA7 Bibliography Validator
 
 A command-line tool to validate APA-7 formatted bibliography entries in a Word (DOCX) document. Supports translations via GNU gettext with default locale `zh_CN`.
