@@ -2,12 +2,12 @@
 # 版权所有 (C) 2025 软件包版权持有者
 # 本文件在相同许可下分发，作为 PACKAGE 软件包的一部分。
 # 第一作者 <EMAIL@ADDRESS>, 2025.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-22 13:36+0100\n"
+"POT-Creation-Date: 2025-06-22 15:01+0100\n"
 "PO-Revision-Date: 2025-06-21 15:38+0100\n"
 "Last-Translator: U-YOGA-PRO-7\\Henrique Lin <henrique.lin99@gmail.com>\n"
 "Language-Team: Chinese (simplified)\n"
@@ -20,247 +20,253 @@ msgstr ""
 msgid "Thesis/Dissertation"
 msgstr "硕士/博士论文"
 
-#: apa7_bib_validator.py:180
+#: apa7_bib_validator.py:182
+msgid ""
+"Use curly apostrophe (’)[U+2019] in “Master’s thesis”, not straight (')"
+"[U+0027]."
+msgstr "在“Master’s thesis”中使用卷曲撇号 ’(U+2019)，而不是直撇号 '(U+0027)。"
+
+#: apa7_bib_validator.py:185
 msgid "After thesis-type bracket you need ']. ' before institution."
 msgstr "在学位类型括号后，需要在院校名称前使用 ‘]. ’。"
 
-#: apa7_bib_validator.py:186
+#: apa7_bib_validator.py:191
 #, python-brace-format
 msgid "Thesis title must be italicized: '{title}'"
 msgstr "论文标题必须使用斜体：'{title}'"
 
-#: apa7_bib_validator.py:189
+#: apa7_bib_validator.py:194
 msgid "Book Chapter"
 msgstr "书籍章节"
 
-#: apa7_bib_validator.py:203
+#: apa7_bib_validator.py:208
 #, fuzzy
 msgid ""
 "Book chapter must be \"In Editor(s) (Ed.), Book Title (pp. xx–xx). Publisher."
 "\""
 msgstr "书籍章节必须采用 “In 编辑 (Ed.), 书名 (pp. xx–xx). 出版社.” 格式。"
 
-#: apa7_bib_validator.py:208
+#: apa7_bib_validator.py:213
 msgid "Editors list must include '&' before last editor."
 msgstr "编辑列表中最后一位编辑姓名前必须包含 “&”。"
 
-#: apa7_bib_validator.py:210
+#: apa7_bib_validator.py:215
 #, python-brace-format
 msgid "Book title must start with a capital: '{book_title}'"
 msgstr "书名必须以大写字母开头：'{book_title}'"
 
-#: apa7_bib_validator.py:214
+#: apa7_bib_validator.py:219
 msgid "Book title must be italicized."
 msgstr "书名必须使用斜体。"
 
-#: apa7_bib_validator.py:217 apa7_bib_validator.py:312
+#: apa7_bib_validator.py:222 apa7_bib_validator.py:317
 #, fuzzy
 msgid "Use en-dash (–)[U+2013], not hyphen (-)[U+002d], in page ranges."
 msgstr "页码范围中请使用短破折号 “–”(U+2013)，而不是连字符 “-”（U+0027）。"
 
-#: apa7_bib_validator.py:226
+#: apa7_bib_validator.py:231
 #, python-brace-format
 msgid "Page start ({sp}) must be less than end ({ep})."
 msgstr "起始页 ({sp}) 必须小于结束页 ({ep})。"
 
-#: apa7_bib_validator.py:228
+#: apa7_bib_validator.py:233
 msgid "Publisher missing."
 msgstr "缺少出版社。"
 
-#: apa7_bib_validator.py:231
+#: apa7_bib_validator.py:236
 msgid "Edited Book"
 msgstr "编辑书籍"
 
-#: apa7_bib_validator.py:245
+#: apa7_bib_validator.py:250
 msgid "Edited book must be \"Author. (Ed.). (YYYY). Title. Publisher.\""
 msgstr "编辑书籍格式必须为 “作者. (Ed.). (YYYY). 书名. 出版社.”"
 
-#: apa7_bib_validator.py:252
+#: apa7_bib_validator.py:257
 msgid "Edited-book title must be italicized."
 msgstr "编辑书籍标题必须使用斜体。"
 
-#: apa7_bib_validator.py:255
+#: apa7_bib_validator.py:260
 msgid "Journal Article"
 msgstr "期刊文章"
 
-#: apa7_bib_validator.py:269 apa7_bib_validator.py:371
+#: apa7_bib_validator.py:274 apa7_bib_validator.py:376
 msgid "Missing '(YYYY).' block."
 msgstr "缺少 “(YYYY).” 部分。"
 
-#: apa7_bib_validator.py:276
+#: apa7_bib_validator.py:281
 msgid "Cannot split title and source on punctuation."
 msgstr "无法根据标点符号区分标题和来源。"
 
-#: apa7_bib_validator.py:290
+#: apa7_bib_validator.py:295
 #, fuzzy
 msgid "Source must be 'Journal, Volume(Issue), pp–pp.'"
 msgstr "来源格式必须为 “期刊名, 卷号(期号), 起始页–结束页.”"
 
-#: apa7_bib_validator.py:297
+#: apa7_bib_validator.py:302
 #, python-brace-format
 msgid "Journal title must be italicized: '{journal}'"
 msgstr "期刊名称必须使用斜体：'{journal}'"
 
-#: apa7_bib_validator.py:306
+#: apa7_bib_validator.py:311
 #, python-brace-format
 msgid "Journal title word not capitalized: '{should_cap}'"
 msgstr "期刊名称单词未大写：'{should_cap}'"
 
-#: apa7_bib_validator.py:309
+#: apa7_bib_validator.py:314
 #, python-brace-format
 msgid "Volume must be italicized: '{vol}'"
 msgstr "卷号必须使用斜体：'{vol}'"
 
-#: apa7_bib_validator.py:316
+#: apa7_bib_validator.py:321
 msgid "Use en-dash (–)[U+2013], not hyphen (-)[U+002d], in issue ranges."
 msgstr "期号范围中请使用短破折号 “–”(U+2013)，而不是连字符 “-”（U+0027）。"
 
-#: apa7_bib_validator.py:328
+#: apa7_bib_validator.py:333
 msgid "Page numbers must be positive."
 msgstr "页码必须为正数。"
 
-#: apa7_bib_validator.py:330
+#: apa7_bib_validator.py:335
 #, python-brace-format
 msgid "Start page ({sp_i}) > end page ({ep_i})."
 msgstr "起始页 ({sp_i}) 大于结束页 ({ep_i})。"
 
-#: apa7_bib_validator.py:332
+#: apa7_bib_validator.py:337
 msgid "Page numbers must be integers."
 msgstr "页码必须为整数。"
 
-#: apa7_bib_validator.py:351
+#: apa7_bib_validator.py:356
 #, python-brace-format
 msgid "Article title segment must start uppercase, digit, or CJK: '{fw}'"
 msgstr "文章标题段落必须以大写字母、数字或中文字符开头：'{fw}'"
 
-#: apa7_bib_validator.py:358
+#: apa7_bib_validator.py:363
 #, python-brace-format
 msgid "Article title word must be lowercase (or ALL-CAPS): '{w}'"
 msgstr "文章标题单词必须为小写字母（或全大写）：'{w}'"
 
-#: apa7_bib_validator.py:363
+#: apa7_bib_validator.py:368
 msgid "Conference Article"
 msgstr "会议文章"
 
-#: apa7_bib_validator.py:376
+#: apa7_bib_validator.py:379
+msgid "Use en-dash (–)[U+2013], not hyphen (-)[U+002d], in date ranges."
+msgstr "日期范围中请使用短破折号 “–”(U+2013)，而不是连字符 “-”（U+0027）。"
+
+#: apa7_bib_validator.py:384
 msgid "Cannot split title and conference info."
 msgstr "无法区分标题和会议信息。"
 
-#: apa7_bib_validator.py:380
+#: apa7_bib_validator.py:388
 msgid "Conference title must be italicized."
 msgstr "会议论文标题必须使用斜体。"
 
-#: apa7_bib_validator.py:383
+#: apa7_bib_validator.py:391
 msgid "Conference info must be 'Name, Location.'"
 msgstr "会议信息格式必须为 “名称, 地点.”"
 
-#: apa7_bib_validator.py:386
+#: apa7_bib_validator.py:394
 msgid "Monograph/Book"
 msgstr "专著/书籍"
 
-#: apa7_bib_validator.py:395
+#: apa7_bib_validator.py:403
 msgid "Monograph must be 'Author. (YYYY). Title. Publisher.'"
 msgstr "专著格式必须为 “作者. (YYYY). 书名. 出版社.”"
 
-#: apa7_bib_validator.py:399
+#: apa7_bib_validator.py:407
 msgid "Publisher looks numeric, not valid for a book."
 msgstr "出版社似乎是数字，不符合书籍格式。"
 
-#: apa7_bib_validator.py:403
+#: apa7_bib_validator.py:411
 #, python-brace-format
 msgid "Book title must be italicized: '{title}'"
 msgstr "书名必须使用斜体：'{title}'"
 
-#: apa7_bib_validator.py:424
+#: apa7_bib_validator.py:432
 msgid ""
 "Make sure this entry matches one of the six APA-7 reference types exactly."
 msgstr "确保此条目完全符合上述六种 APA-7 引用类型之一。"
 
-#: apa7_bib_validator.py:431
+#: apa7_bib_validator.py:439
 msgid "Cannot parse authors list."
 msgstr "无法解析作者列表。"
 
-#: apa7_bib_validator.py:437
+#: apa7_bib_validator.py:445
 msgid "No authors found."
 msgstr "未找到作者。"
 
-#: apa7_bib_validator.py:441
+#: apa7_bib_validator.py:449
 msgid "Multiple authors need '&' before last author."
 msgstr "多位作者需要在最后一位作者前加 “&”。"
 
-#: apa7_bib_validator.py:443
+#: apa7_bib_validator.py:451
 msgid "Use comma before '&' for 2-20 authors."
 msgstr "当作者为2到20人时，在 “&” 前需要使用逗号。"
 
-#: apa7_bib_validator.py:445
+#: apa7_bib_validator.py:453
 msgid "Use ellipsis after 19 authors when >20 authors."
 msgstr "当作者超过20人时，在第19位作者之后使用省略号 “…”。"
 
-#: apa7_bib_validator.py:449
-msgid "Use en-dash (–)[U+2013], not hyphen (-)[U+002d], in date ranges."
-msgstr "日期范围中请使用短破折号 “–”(U+2013)，而不是连字符 “-”（U+0027）。"
-
-#: apa7_bib_validator.py:451
+#: apa7_bib_validator.py:457
 #, fuzzy
-msgid "Year block must be '(YYYY).' or '(YYYY, Month D-D).'"
+msgid "Year block must be '(YYYY).' or '(YYYY, Month D–D).'"
 msgstr "年份部分必须为 “(YYYY).” 或 “(YYYY, Month D–D).”"
 
-#: apa7_bib_validator.py:456
+#: apa7_bib_validator.py:462
 msgid "Cannot parse title (no sentence-ending punctuation)."
 msgstr "无法解析标题（缺少句末标点）。"
 
-#: apa7_bib_validator.py:460
+#: apa7_bib_validator.py:466
 msgid "Title must start with a capital letter or digit/CJK."
 msgstr "标题必须以大写字母、数字或中文字符开头。"
 
-#: apa7_bib_validator.py:462
+#: apa7_bib_validator.py:468
 msgid "Chinese title needs English translation in [ ] immediately after."
 msgstr "中文标题需要在后面立即加上英文翻译并用 [ ] 括起。"
 
-#: apa7_bib_validator.py:472
+#: apa7_bib_validator.py:478
 msgid "Couldn't recognize as any of the six APA-7 types."
 msgstr "无法识别为上述六种 APA-7 引用类型中的任何一种。"
 
-#: apa7_bib_validator.py:487
+#: apa7_bib_validator.py:493
 msgid "Reference must end with a period."
 msgstr "参考文献必须以句号结束。"
 
-#: apa7_bib_validator.py:492
+#: apa7_bib_validator.py:498
 msgid "Line spacing must be single."
 msgstr "行距必须为单倍行距。"
 
-#: apa7_bib_validator.py:494
+#: apa7_bib_validator.py:500
 msgid "Paragraph must have hanging indent of 0.7 cm."
 msgstr "段落必须有0.7厘米的悬挂缩进。"
 
-#: apa7_bib_validator.py:498
+#: apa7_bib_validator.py:504
 msgid "Font must be Times New Roman."
 msgstr "字体必须为 Times New Roman。"
 
-#: apa7_bib_validator.py:501
+#: apa7_bib_validator.py:507
 msgid "Font size must be 12 pt."
 msgstr "字体大小必须为12磅。"
 
-#: apa7_bib_validator.py:509
+#: apa7_bib_validator.py:515
 msgid "Unknown"
 msgstr "未知"
 
-#: apa7_bib_validator.py:515
+#: apa7_bib_validator.py:521
 #, python-brace-format
 msgid "Entry {idx} ({typ}): "
 msgstr "条目 {idx} ({typ})"
 
-#: apa7_bib_validator.py:547
+#: apa7_bib_validator.py:553
 #, fuzzy
 msgid "⚠️ Entries are not in alphabetical order by surname.\n"
 msgstr "⚠️ 条目未按姓氏字母顺序排列。\n"
 
-#: apa7_bib_validator.py:556
+#: apa7_bib_validator.py:562
 #, python-brace-format
 msgid "Total entries with errors: {errors}"
 msgstr "错误条目总数：{errors}"
 
-#: apa7_bib_validator.py:558
+#: apa7_bib_validator.py:564
 #, fuzzy
 msgid "✅ All entries look good!"
 msgstr "✅  所有条目均符合要求！"
