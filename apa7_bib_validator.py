@@ -42,7 +42,7 @@ HINT_TEMPLATES = {
         ("Smith, A. B.",),
         (" (2019). Chapter Title. In C. D. Editor & E. F. Editor (Eds.), "),
         ("Book Title", "italic"),
-        (" (pp. 12-34). Publisher.",)
+        (" (pp. 12–34). Publisher.",)
     ),
     "Edited Book": lambda: Text.assemble(
         ("Example: ",),
@@ -58,7 +58,7 @@ HINT_TEMPLATES = {
         ("Journal of Research", "italic"),
         (", ",),
         ("15", "italic"),
-        ("(3), 123-145.",)
+        ("(3), 123–145.",)
     ),
     "Conference Article": lambda: Text.assemble(
         ("Example: ",),
@@ -173,7 +173,7 @@ class CitationType(ABC):
 
 class ThesisCitation(CitationType):
     name = _("Thesis/Dissertation")
-    detect_re = re.compile(r'\[(Doctoral dissertation|Master’s thesis)\]', re.IGNORECASE)
+    detect_re = re.compile(r'\[(Doctoral dissertation|Master[’\']s thesis)\]', re.IGNORECASE)
 
     def validate(self, text, para, cite):
         if not re.search(r'\]\.\s+', text):
@@ -194,16 +194,16 @@ class BookChapterCitation(CitationType):
         m = re.match(
             r'^In\s+(.+?)\s*\(Ed[s]?\.\),\s*'     # editors
             r'(.+?)\s*'                          # book title
-            r'\(pp\.\s*(\d+)-(\d+)\)\.\s*'       # pages
+            r'\(pp\.\s*(\d+[-–]\d+)\)\.\s*'       # pages
             r'(.+)\.$',                          # publisher
             text
         )
         if not m:
             cite['errors'].append(
-                _("Book chapter must be \"In Editor(s) (Ed.), Book Title (pp. xx-xx). Publisher.\"")
+                _("Book chapter must be \"In Editor(s) (Ed.), Book Title (pp. xx–xx). Publisher.\"")
             )
             return
-        editors, book_title, sp, ep, pub = m.groups()
+        editors, book_title, pages, pub = m.groups()
         if '&' not in editors:
             cite['errors'].append(_("Editors list must include '&' before last editor."))
         if not book_title[0].isupper():
@@ -212,6 +212,16 @@ class BookChapterCitation(CitationType):
         title_main = re.sub(r'\s*\[.*?\]\s*', '', book_title).strip()
         if not is_snippet_italic(para, title_main):
             cite['errors'].append(_("Book title must be italicized."))
+
+        if '-' in pages:
+            cite['errors'].append(_("Use en-dash (–)[U+2013], not hyphen (-)[U+002d], in page ranges."))
+            pages = pages.replace('-','–')
+
+        if '–' in pages:
+            sp, ep = pages.split('–', 1)
+        else:
+            sp = ep = pages
+ 
         if int(sp) >= int(ep):
             cite['errors'].append(_("Page start ({sp}) must be less than end ({ep}).").format(sp=sp,ep=ep))
         if not pub.strip():
@@ -247,8 +257,8 @@ class JournalArticleCitation(CitationType):
     detect_re = re.compile(
         r'^\s*.+?\(\d{4}\)\.\s*'             # authors + (YYYY).
         r'.+?,\s*'                           # journal name + comma
-        r'\d+(?:\(\d+(?:[-]\d+)?\))?,\s*'    # volume(issue or issue-range),
-        r'\d+(?:[-]\d+)?\.\s*$',             # pages (with hyphen)
+        r'\d+(?:\(\d+(?:[-–]\d+)?\))?,\s*'    # volume(issue or issue-range),
+        r'\d+(?:[-–]\d+)?\.\s*$',             # pages (with hyphen or en-dash)
         re.UNICODE
     )
 
@@ -272,12 +282,12 @@ class JournalArticleCitation(CitationType):
         m2 = re.match(
             r'^(.+?),\s*'                # 1) journal name
             r'(\d+)'                     # 2) volume
-            r'(?:\((\d+(?:-\d+)?)\))?,'   # 3) optional issue
-            r'\s*(\d+(?:[-]\d+)?)\.$',   # 4) pages, hyphen or en-dash
+            r'(?:\((\d+(?:[-–]\d+)?)\))?,'   # 3) optional issue
+            r'\s*(\d+(?:[-–]\d+)?)\.$',   # 4) pages, hyphen or en-dash
             source
         )
         if not m2:
-            cite['errors'].append(_("Source must be 'Journal, Volume(Issue), pp-pp.'"))
+            cite['errors'].append(_("Source must be 'Journal, Volume(Issue), pp–pp.'"))
             return
         journal, vol, iss, pages = m2.groups()
 
@@ -298,9 +308,17 @@ class JournalArticleCitation(CitationType):
         if not is_snippet_italic(para, vol):
             cite['errors'].append(_("Volume must be italicized: '{vol}'").format(vol=vol))
 
-        # Split only if there really is a range
         if '-' in pages:
-            sp, ep = pages.split('-', 1)
+            cite['errors'].append(_("Use en-dash (–)[U+2013], not hyphen (-)[U+002d], in page ranges."))
+            pages = pages.replace('-','–')
+
+        if iss and '-' in iss:
+            cite['errors'].append(_("Use en-dash (–)[U+2013], not hyphen (-)[U+002d], in issue ranges."))
+            iss = iss.replace('-','–')
+
+        # Split only if there really is a range
+        if '–' in pages:
+            sp, ep = pages.split('–', 1)
         else:
             sp = ep = pages
 
@@ -347,11 +365,14 @@ class ConferenceCitation(CitationType):
 
     def validate(self, text, para, cite):
         # split off year block
-        year_re = re.compile(r'\(\d{4}\)\.\s*')
+        year_re = re.compile(r'\(\d{4}(?:,\s*[A-Za-z]+ \d{1,2}(?:[-–]\d{1,2})?)?\)\.')
         m0 = year_re.search(text)
         if not m0:
             cite['errors'].append(_("Missing '(YYYY).' block."))
             return
+        if '-' in m0.group():
+            cite['errors'].append(_("Use en-dash (–)[U+2013], not hyphen (-)[U+002d], in date ranges."))
+
         rem = text[m0.end():].strip()
         m1 = re.match(r'(.+?[.!?])\s*(.+)$', rem)
         if not m1:
@@ -427,8 +448,8 @@ def validate_authors(text, cite):
             cite['errors'].append(_("Use ellipsis after 19 authors when >20 authors."))
 
 def validate_year(text, cite):
-    if not re.search(r'\(\d{4}(?:,\s*[A-Za-z]+ \d{1,2}(?:[-]\d{1,2})?)?\)\.', text):
-        cite['errors'].append(_("Year block must be '(YYYY).' or '(YYYY, Month D-D).'"))
+    if not re.search(r'\(\d{4}(?:,\s*[A-Za-z]+ \d{1,2}(?:[-–]\d{1,2})?)?\)\.', text):
+        cite['errors'].append(_("Year block must be '(YYYY).' or '(YYYY, Month D–D).'"))
 
 def validate_title(text, cite):
     m = re.search(r'\)\.\s*(.+?)(?=[\.\?\!])', text)
@@ -456,19 +477,14 @@ def validate_source(text, para, cite):
 def diagnose_entry(para, text, idx):
     cite = {'raw': text, 'errors': []}
 
-    # 1) Check for en–dash vs hyphen and normalize
-    if '–' in text:
-        cite['errors'].append(_("Use hyphen (-), not en-dash (–), in ranges."))
-    norm = text.replace('–', '-')
+    # Run all the validators 
+    validate_authors(text, cite)
+    validate_year(text, cite)
+    validate_title(text, cite)
+    validate_source(text, para, cite)
 
-    # 2) Run all the other validators on the normalized text
-    validate_authors(norm, cite)
-    validate_year(norm, cite)
-    validate_title(norm, cite)
-    validate_source(norm, para, cite)
-
-    # 3) Generic trailing-period check (still on the original, or norm—they're equivalent now)
-    if not norm.endswith('.'):
+    # Generic trailing-period check (still on the original, or norm—they're equivalent now)
+    if not text.endswith('.'):
         cite['errors'].append(_("Reference must end with a period."))
 
 
@@ -491,7 +507,7 @@ def diagnose_entry(para, text, idx):
         
         # Header: entry number & type
         # 1) pull out the raw type (or fallback to 'Unknown')
-        raw_type = cite.get('detected_type', 'Unknown')
+        raw_type = cite.get('detected_type', _('Unknown'))
 
         # 2) translate the type itself
         localized_type = _(raw_type)
@@ -529,7 +545,7 @@ def diagnose(docx_path):
     # Alphabetical check
     surnames = [txt.split(',',1)[0].lower() for _, txt in entries]
     if surnames != sorted(surnames):
-        console.print(_("⚠️  Entries are not in alphabetical order by surname.\n"), style="yellow")
+        console.print(_("⚠️ Entries are not in alphabetical order by surname.\n"), style="yellow")
 
     # Validate each
     errors = 0
@@ -540,7 +556,7 @@ def diagnose(docx_path):
     if errors:
         console.print(_("Total entries with errors: {errors}").format(errors=errors), style="bold red")
     else:
-        console.print(_("✅  All entries look good!"), style="bold green")
+        console.print(_("✅ All entries look good!"), style="bold green")
 
 def setup_gettext(lang_code: str):
     try:
