@@ -414,7 +414,7 @@ class ConferenceCitation(CitationType):
             return
 
         if not is_snippet_italic(para, title_part):
-            cite['errors'].append(_("Conference title must be italicized."))
+            cite['errors'].append(_("Conference title must be italicized: '{title_part}'").format(title_part=title_part))
         # expect "Conference Name, Location."
         if ',' not in conf_info or not conf_info.endswith('.'):
             cite['errors'].append(_("Conference info must be 'Name, Location.'"))
