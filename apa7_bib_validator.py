@@ -258,7 +258,7 @@ class JournalArticleCitation(CitationType):
         r'^\s*.+?\(\d{4}\)\.\s*'             # authors + (YYYY).
         r'.+?,\s*'                           # journal name + comma
         r'\d+(?:\(\d+(?:[-–]\d+)?\))?,\s*'    # volume(issue or issue-range),
-        r'\d+(?:[-–]\d+)?\.\s*$',             # pages (with hyphen)
+        r'\d+(?:[-–]\d+)?\.\s*$',             # pages (with hyphen or en-dash)
         re.UNICODE
     )
 
