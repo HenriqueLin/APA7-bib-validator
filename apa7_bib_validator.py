@@ -404,6 +404,15 @@ class ConferenceCitation(CitationType):
             cite['errors'].append(_("Cannot split title and conference info."))
             return
         title_part, conf_info = m1.groups()
+
+        m2 = re.search(r'\b\d+\s*[-–]\s*\d+\b', text)
+        if m2:
+            cite['errors'].append(
+                _("Detected page range “{range}”; make sure this is a journal article, not a conference entry.")
+                .format(range=m2.group(0))
+            )
+            return
+
         if not is_snippet_italic(para, title_part):
             cite['errors'].append(_("Conference title must be italicized."))
         # expect "Conference Name, Location."
