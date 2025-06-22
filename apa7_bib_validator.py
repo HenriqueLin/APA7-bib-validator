@@ -547,17 +547,12 @@ def diagnose_entry(para, text, idx):
         localized_type = _(raw_type)
 
         # 3) translate the template, then format in Python
-        template = _("Entry {idx} ({typ}): ")
-        header = Text(
-            template.format(idx=idx, typ=localized_type),
-            style="bold cyan"
-        )
-        header.append(text)
-        console.print(header)
+        console.print(Text(_("Entry {idx} ({typ}): ").format(idx=idx, typ=localized_type),style="bold yellow"))
+        console.print(Text(text,style="bold cyan"))
 
         # Each error in red
         for err in cite['errors']:
-            console.print("  • " + err, style="red")
+            console.print("  • " + err, style="red",highlight=False)
 
         # instead of the old hint, do this:
         tpl = HINT_TEMPLATES.get(cite.get('detected_type'))
@@ -576,15 +571,15 @@ def diagnose(docx_path):
     doc = Document(docx_path)
     entries = get_bibliography_paragraphs(doc)
 
-    # Alphabetical check
-    surnames = [txt.split(',',1)[0].lower() for _, txt in entries]
-    if surnames != sorted(surnames):
-        console.print(_("⚠️ Entries are not in alphabetical order by surname.\n"), style="yellow")
-
     # Validate each
     errors = 0
     for i, (para, txt) in enumerate(entries, 1):
         errors += diagnose_entry(para, txt, i)
+
+    # Alphabetical check
+    surnames = [txt.split(',',1)[0].lower() for _, txt in entries]
+    if surnames != sorted(surnames):
+        console.print(_("⚠️ Entries are not in alphabetical order by surname.\n"), style="yellow")
 
     # Summary
     if errors:
