@@ -386,7 +386,16 @@ class JournalArticleCitation(CitationType):
 
 class ConferenceCitation(CitationType):
     name = _("Conference Article")
-    detect_re = re.compile(r'\]\.\s*.+?,\s*.+\.$')  # loose match after year
+    detect_re = re.compile(
+        r'^'                                             # start of entry
+        r'.+?'                                           # author(s)
+        r'\(\d{4},\s*[A-Za-z]+ \d{1,2}(?:[–-]\d{1,2})?\)\.\s*'  
+          # (YYYY, Month D or D–D).
+        r'.+?\.\s*'                                      # article title + period
+        r'.+?,\s*.+\.$'                                  # conf name, location.
+        , re.UNICODE
+    )
+
 
     def validate(self, text, para, cite):
         # split off year block
@@ -405,7 +414,7 @@ class ConferenceCitation(CitationType):
             return
         title_part, conf_info = m1.groups()
 
-        m2 = re.search(r'\b\d+\s*[-–]\s*\d+\b', text)
+        m2 = re.search(r'\b\d+\s*[-–]\s*\d+\b', rem)
         if m2:
             cite['errors'].append(
                 _("Detected page range “{range}”; make sure this is a journal article, not a conference entry.")
