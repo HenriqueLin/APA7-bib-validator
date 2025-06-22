@@ -92,7 +92,7 @@ python apa7_bib_validator.py -d sample/references.docx -l en_US
 2. **Merge** only new strings into your existing Chinese `.po`, using the `-u` (update) and `-v` (verbose) flags:
 
    ```bash
-   msgmerge -uv \
+   msgmerge -Uv \
      locales/zh_CN/LC_MESSAGES/apa7_bib_validator.po \
      apa7_bib_validator.pot
    ```
@@ -100,7 +100,7 @@ python apa7_bib_validator.py -d sample/references.docx -l en_US
 3. **Compile** the updated `.po` into a binary `.mo`:
 
    ```bash
-   msgfmt -o locales/zh_CN/LC_MESSAGES/apa7_bib_validator.mo \
+   msgfmt -fo locales/zh_CN/LC_MESSAGES/apa7_bib_validator.mo \
           locales/zh_CN/LC_MESSAGES/apa7_bib_validator.po
    ```
 
