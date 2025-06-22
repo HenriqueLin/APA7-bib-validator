@@ -370,6 +370,9 @@ class ConferenceCitation(CitationType):
         if not m0:
             cite['errors'].append(_("Missing '(YYYY).' block."))
             return
+        if '-' in m0.group():
+            cite['errors'].append(_("Use en-dash (–)[U+2013], not hyphen (-)[U+002d], in date ranges."))
+
         rem = text[m0.end():].strip()
         m1 = re.match(r'(.+?[.!?])\s*(.+)$', rem)
         if not m1:
@@ -445,8 +448,6 @@ def validate_authors(text, cite):
             cite['errors'].append(_("Use ellipsis after 19 authors when >20 authors."))
 
 def validate_year(text, cite):
-    if '-' in text:
-        cite['errors'].append(_("Use en-dash (–)[U+2013], not hyphen (-)[U+002d], in date ranges."))
     if not re.search(r'\(\d{4}(?:,\s*[A-Za-z]+ \d{1,2}(?:[-–]\d{1,2})?)?\)\.', text):
         cite['errors'].append(_("Year block must be '(YYYY).' or '(YYYY, Month D-D).'"))
 
@@ -506,7 +507,7 @@ def diagnose_entry(para, text, idx):
         
         # Header: entry number & type
         # 1) pull out the raw type (or fallback to 'Unknown')
-        raw_type = cite.get('detected_type', 'Unknown')
+        raw_type = cite.get('detected_type', _('Unknown'))
 
         # 2) translate the type itself
         localized_type = _(raw_type)
