@@ -62,7 +62,7 @@ msgstr "书名必须使用斜体。"
 #: apa7_bib_validator.py:222 apa7_bib_validator.py:317
 #, fuzzy
 msgid "Use en-dash (–)[U+2013], not hyphen (-)[U+002d], in page ranges."
-msgstr "页码范围中请使用短破折号 “–”(U+2013)，而不是连字符 “-”（U+0027）。"
+msgstr "页码范围中请使用短破折号 “–”(U+2013)，而不是连字符 “-”（U+002d）。"
 
 #: apa7_bib_validator.py:231
 #, python-brace-format
@@ -119,7 +119,7 @@ msgstr "卷号必须使用斜体：'{vol}'"
 
 #: apa7_bib_validator.py:321
 msgid "Use en-dash (–)[U+2013], not hyphen (-)[U+002d], in issue ranges."
-msgstr "期号范围中请使用短破折号 “–”(U+2013)，而不是连字符 “-”（U+0027）。"
+msgstr "期号范围中请使用短破折号 “–”(U+2013)，而不是连字符 “-”（U+002d）。"
 
 #: apa7_bib_validator.py:333
 msgid "Page numbers must be positive."
@@ -150,7 +150,7 @@ msgstr "会议文章"
 
 #: apa7_bib_validator.py:379
 msgid "Use en-dash (–)[U+2013], not hyphen (-)[U+002d], in date ranges."
-msgstr "日期范围中请使用短破折号 “–”(U+2013)，而不是连字符 “-”（U+0027）。"
+msgstr "日期范围中请使用短破折号 “–”(U+2013)，而不是连字符 “-”（U+002d）。"
 
 #: apa7_bib_validator.py:384
 msgid "Cannot split title and conference info."
