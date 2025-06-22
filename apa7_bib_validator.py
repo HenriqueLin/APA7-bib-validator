@@ -35,7 +35,7 @@ HINT_TEMPLATES = {
         ("Doe, J.",),
         (" (2018). ",),
         ("The Effects of X on Y", "italic"),
-        (" [Doctoral dissertation, University of Example].",)
+        (" [Doctoral dissertation]. University of Example.",)
     ),
     "Book Chapter": lambda: Text.assemble(
         ("Example: ",),
