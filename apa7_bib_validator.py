@@ -91,22 +91,42 @@ def run_is_italic(run):
     return False
 
 def is_snippet_italic(para, snippet):
-    """Return True if the exact snippet in this paragraph is entirely italicized."""
+    """
+    Return True if *any* exact occurrence of snippet in this paragraph
+    is entirely italicized.
+    """
+    # build the full text and keep track of run spans
     runs = para.runs
     full_text = "".join(run.text for run in runs)
-    start = full_text.find(snippet)
-    if start < 0:
+
+    # find all match positions
+    matches = list(re.finditer(re.escape(snippet), full_text))
+    if not matches:
         return False
-    end = start + len(snippet)
+
+    # precompute the span (start, end) of each run within full_text
+    run_spans = []
     pos = 0
     for run in runs:
-        run_len = len(run.text)
-        run_start, run_end = pos, pos + run_len
-        if run_end > start and run_start < end:
-            if not run_is_italic(run):
-                return False
-        pos = run_end
-    return True
+        length = len(run.text)
+        run_spans.append((pos, pos + length, run))
+        pos += length
+
+    # helper to test if a single match-range is fully italic
+    def range_is_italic(start, end):
+        for run_start, run_end, run in run_spans:
+            # if this run overlaps the snippet range…
+            if run_end > start and run_start < end:
+                if not run_is_italic(run):
+                    return False
+        return True
+
+    # check each occurrence
+    for m in matches:
+        if range_is_italic(m.start(), m.end()):
+            return True
+
+    return False
 
 def get_effective_font(style):
     """Traverse style inheritance to find font name and size."""
