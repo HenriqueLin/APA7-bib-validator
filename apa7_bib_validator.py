@@ -280,10 +280,11 @@ class JournalArticleCitation(CitationType):
     name = _("Journal Article")
     # allow both hyphen and en-dash in the page range, and match from start to end
     detect_re = re.compile(
-        r'^\s*.+?\(\d{4}\)\.\s*'             # authors + (YYYY).
-        r'.+?,\s*'                           # journal name + comma
-        r'\d+(?:\(\d+(?:[-–]\d+)?\))?,\s*'    # volume(issue or issue-range),
-        r'\d+(?:[-–]\d+)?\.\s*$',             # pages (with hyphen or en-dash)
+        r'^\s*.+?\(\d{4}\)\.\s*'          # authors + (YYYY).
+        r'.+?,\s*'                        # journal name + comma
+        r'\d+(?:\(\d+(?:[-–]\d+)?\))?'    # volume(issue or issue-range)
+        r'(?:,\s*\d+(?:[-–]\d+)?)?'       # ← optional pages
+        r'\.\s*$',                        # final period + end
         re.UNICODE
     )
 
@@ -305,10 +306,11 @@ class JournalArticleCitation(CitationType):
         # Updated source regex to allow – or –
         
         m2 = re.match(
-            r'^(.+?),\s*'                # 1) journal name
-            r'(\d+)'                     # 2) volume
-            r'(?:\((\d+(?:[-–]\d+)?)\))?,'   # 3) optional issue
-            r'\s*(\d+(?:[-–]\d+)?)\.$',   # 4) pages, hyphen or en-dash
+            r'^(.+?),\s*'                  # 1) journal name
+            r'(\d+)'                       # 2) volume
+            r'(?:\((\d+(?:[-–]\d+)?)\))?' # 3) optional issue or issue-range
+            r'(?:,\s*(\d+(?:[-–]\d+)?))?'   # 4) ← optional pages
+            r'\.$',                        # final period
             source
         )
         if not m2:
@@ -333,7 +335,7 @@ class JournalArticleCitation(CitationType):
         if not is_snippet_italic(para, vol):
             cite['errors'].append(_("Volume must be italicized: '{vol}'").format(vol=vol))
 
-        if '-' in pages:
+        if pages and '-' in pages:
             cite['errors'].append(_("Use en-dash (–)[U+2013], not hyphen (-)[U+002d], in page ranges."))
             pages = pages.replace('-','–')
 
@@ -341,20 +343,21 @@ class JournalArticleCitation(CitationType):
             cite['errors'].append(_("Use en-dash (–)[U+2013], not hyphen (-)[U+002d], in issue ranges."))
             iss = iss.replace('-','–')
 
-        # Split only if there really is a range
-        if '–' in pages:
-            sp, ep = pages.split('–', 1)
-        else:
-            sp = ep = pages
+        if pages:
+            # Split only if there really is a range
+            if '–' in pages:
+                sp, ep = pages.split('–', 1)
+            else:
+                sp = ep = pages
 
-        try:
-            sp_i, ep_i = int(sp), int(ep)
-            if sp_i <= 0 or ep_i <= 0:
-                cite['errors'].append(_("Page numbers must be positive."))
-            if sp_i > ep_i:
-                cite['errors'].append(_("Start page ({sp_i}) > end page ({ep_i}).").format(sp_i=sp_i,ep_i=ep_i))
-        except ValueError:
-            cite['errors'].append(_("Page numbers must be integers."))
+            try:
+                sp_i, ep_i = int(sp), int(ep)
+                if sp_i <= 0 or ep_i <= 0:
+                    cite['errors'].append(_("Page numbers must be positive."))
+                if sp_i > ep_i:
+                    cite['errors'].append(_("Start page ({sp_i}) > end page ({ep_i}).").format(sp_i=sp_i,ep_i=ep_i))
+            except ValueError:
+                cite['errors'].append(_("Page numbers must be integers."))
 
         # 1) Strip off ending punctuation, then split on “:”
         segments = re.split(r':\s*', title_part.rstrip('.!?'))
