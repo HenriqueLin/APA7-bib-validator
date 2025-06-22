@@ -1,7 +1,7 @@
 [project]
-name = "apa-checker"
+name = "apa7-bib-validator"
 version = "0.1.0"
-description = "Add your description here"
+description = "A command-line tool to validate APA-7 formatted bibliography entries in a Word (DOCX) document."
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
