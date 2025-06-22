@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-22 15:01+0100\n"
+"POT-Creation-Date: 2025-06-22 15:42+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,251 +17,259 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: apa7_bib_validator.py:175
+#: apa7_bib_validator.py:195
 msgid "Thesis/Dissertation"
 msgstr ""
 
-#: apa7_bib_validator.py:182
+#: apa7_bib_validator.py:202
 msgid ""
 "Use curly apostrophe (’)[U+2019] in “Master’s thesis”, not straight (')"
 "[U+0027]."
 msgstr ""
 
-#: apa7_bib_validator.py:185
+#: apa7_bib_validator.py:205
 msgid "After thesis-type bracket you need ']. ' before institution."
 msgstr ""
 
-#: apa7_bib_validator.py:191
+#: apa7_bib_validator.py:211
 #, python-brace-format
 msgid "Thesis title must be italicized: '{title}'"
 msgstr ""
 
-#: apa7_bib_validator.py:194
+#: apa7_bib_validator.py:214
 msgid "Book Chapter"
 msgstr ""
 
-#: apa7_bib_validator.py:208
+#: apa7_bib_validator.py:228
 msgid ""
 "Book chapter must be \"In Editor(s) (Ed.), Book Title (pp. xx–xx). Publisher."
 "\""
 msgstr ""
 
-#: apa7_bib_validator.py:213
+#: apa7_bib_validator.py:233
 msgid "Editors list must include '&' before last editor."
 msgstr ""
 
-#: apa7_bib_validator.py:215
+#: apa7_bib_validator.py:235
 #, python-brace-format
 msgid "Book title must start with a capital: '{book_title}'"
 msgstr ""
 
-#: apa7_bib_validator.py:219
+#: apa7_bib_validator.py:239
 msgid "Book title must be italicized."
 msgstr ""
 
-#: apa7_bib_validator.py:222 apa7_bib_validator.py:317
+#: apa7_bib_validator.py:242 apa7_bib_validator.py:337
 msgid "Use en-dash (–)[U+2013], not hyphen (-)[U+002d], in page ranges."
 msgstr ""
 
-#: apa7_bib_validator.py:231
+#: apa7_bib_validator.py:251
 #, python-brace-format
 msgid "Page start ({sp}) must be less than end ({ep})."
 msgstr ""
 
-#: apa7_bib_validator.py:233
+#: apa7_bib_validator.py:253
 msgid "Publisher missing."
 msgstr ""
 
-#: apa7_bib_validator.py:236
+#: apa7_bib_validator.py:256
 msgid "Edited Book"
 msgstr ""
 
-#: apa7_bib_validator.py:250
+#: apa7_bib_validator.py:270
 msgid "Edited book must be \"Author. (Ed.). (YYYY). Title. Publisher.\""
 msgstr ""
 
-#: apa7_bib_validator.py:257
+#: apa7_bib_validator.py:277
 msgid "Edited-book title must be italicized."
 msgstr ""
 
-#: apa7_bib_validator.py:260
+#: apa7_bib_validator.py:280
 msgid "Journal Article"
 msgstr ""
 
-#: apa7_bib_validator.py:274 apa7_bib_validator.py:376
+#: apa7_bib_validator.py:294 apa7_bib_validator.py:396
 msgid "Missing '(YYYY).' block."
 msgstr ""
 
-#: apa7_bib_validator.py:281
+#: apa7_bib_validator.py:301
 msgid "Cannot split title and source on punctuation."
 msgstr ""
 
-#: apa7_bib_validator.py:295
+#: apa7_bib_validator.py:315
 msgid "Source must be 'Journal, Volume(Issue), pp–pp.'"
 msgstr ""
 
-#: apa7_bib_validator.py:302
+#: apa7_bib_validator.py:322
 #, python-brace-format
 msgid "Journal title must be italicized: '{journal}'"
 msgstr ""
 
-#: apa7_bib_validator.py:311
+#: apa7_bib_validator.py:331
 #, python-brace-format
 msgid "Journal title word not capitalized: '{should_cap}'"
 msgstr ""
 
-#: apa7_bib_validator.py:314
+#: apa7_bib_validator.py:334
 #, python-brace-format
 msgid "Volume must be italicized: '{vol}'"
 msgstr ""
 
-#: apa7_bib_validator.py:321
+#: apa7_bib_validator.py:341
 msgid "Use en-dash (–)[U+2013], not hyphen (-)[U+002d], in issue ranges."
 msgstr ""
 
-#: apa7_bib_validator.py:333
+#: apa7_bib_validator.py:353
 msgid "Page numbers must be positive."
 msgstr ""
 
-#: apa7_bib_validator.py:335
+#: apa7_bib_validator.py:355
 #, python-brace-format
 msgid "Start page ({sp_i}) > end page ({ep_i})."
 msgstr ""
 
-#: apa7_bib_validator.py:337
+#: apa7_bib_validator.py:357
 msgid "Page numbers must be integers."
 msgstr ""
 
-#: apa7_bib_validator.py:356
+#: apa7_bib_validator.py:376
 #, python-brace-format
 msgid "Article title segment must start uppercase, digit, or CJK: '{fw}'"
 msgstr ""
 
-#: apa7_bib_validator.py:363
+#: apa7_bib_validator.py:383
 #, python-brace-format
 msgid "Article title word must be lowercase (or ALL-CAPS): '{w}'"
 msgstr ""
 
-#: apa7_bib_validator.py:368
+#: apa7_bib_validator.py:388
 msgid "Conference Article"
 msgstr ""
 
-#: apa7_bib_validator.py:379
+#: apa7_bib_validator.py:399
 msgid "Use en-dash (–)[U+2013], not hyphen (-)[U+002d], in date ranges."
 msgstr ""
 
-#: apa7_bib_validator.py:384
+#: apa7_bib_validator.py:404
 msgid "Cannot split title and conference info."
-msgstr ""
-
-#: apa7_bib_validator.py:388
-msgid "Conference title must be italicized."
-msgstr ""
-
-#: apa7_bib_validator.py:391
-msgid "Conference info must be 'Name, Location.'"
-msgstr ""
-
-#: apa7_bib_validator.py:394
-msgid "Monograph/Book"
-msgstr ""
-
-#: apa7_bib_validator.py:403
-msgid "Monograph must be 'Author. (YYYY). Title. Publisher.'"
-msgstr ""
-
-#: apa7_bib_validator.py:407
-msgid "Publisher looks numeric, not valid for a book."
 msgstr ""
 
 #: apa7_bib_validator.py:411
 #, python-brace-format
-msgid "Book title must be italicized: '{title}'"
+msgid ""
+"Detected page range “{range}”; make sure this is a journal article, not a "
+"conference entry."
+msgstr ""
+
+#: apa7_bib_validator.py:417
+#, python-brace-format
+msgid "Conference title must be italicized: '{title_part}'"
+msgstr ""
+
+#: apa7_bib_validator.py:420
+msgid "Conference info must be 'Name, Location.'"
+msgstr ""
+
+#: apa7_bib_validator.py:423
+msgid "Monograph/Book"
 msgstr ""
 
 #: apa7_bib_validator.py:432
+msgid "Monograph must be 'Author. (YYYY). Title. Publisher.'"
+msgstr ""
+
+#: apa7_bib_validator.py:436
+msgid "Publisher looks numeric, not valid for a book."
+msgstr ""
+
+#: apa7_bib_validator.py:440
+#, python-brace-format
+msgid "Book title must be italicized: '{title}'"
+msgstr ""
+
+#: apa7_bib_validator.py:461
 msgid ""
 "Make sure this entry matches one of the six APA-7 reference types exactly."
 msgstr ""
 
-#: apa7_bib_validator.py:439
+#: apa7_bib_validator.py:468
 msgid "Cannot parse authors list."
 msgstr ""
 
-#: apa7_bib_validator.py:445
+#: apa7_bib_validator.py:474
 msgid "No authors found."
 msgstr ""
 
-#: apa7_bib_validator.py:449
+#: apa7_bib_validator.py:478
 msgid "Multiple authors need '&' before last author."
 msgstr ""
 
-#: apa7_bib_validator.py:451
+#: apa7_bib_validator.py:480
 msgid "Use comma before '&' for 2-20 authors."
 msgstr ""
 
-#: apa7_bib_validator.py:453
+#: apa7_bib_validator.py:482
 msgid "Use ellipsis after 19 authors when >20 authors."
 msgstr ""
 
-#: apa7_bib_validator.py:457
+#: apa7_bib_validator.py:486
 msgid "Year block must be '(YYYY).' or '(YYYY, Month D–D).'"
 msgstr ""
 
-#: apa7_bib_validator.py:462
+#: apa7_bib_validator.py:491
 msgid "Cannot parse title (no sentence-ending punctuation)."
 msgstr ""
 
-#: apa7_bib_validator.py:466
+#: apa7_bib_validator.py:495
 msgid "Title must start with a capital letter or digit/CJK."
 msgstr ""
 
-#: apa7_bib_validator.py:468
+#: apa7_bib_validator.py:497
 msgid "Chinese title needs English translation in [ ] immediately after."
 msgstr ""
 
-#: apa7_bib_validator.py:478
+#: apa7_bib_validator.py:507
 msgid "Couldn't recognize as any of the six APA-7 types."
 msgstr ""
 
-#: apa7_bib_validator.py:493
+#: apa7_bib_validator.py:522
 msgid "Reference must end with a period."
 msgstr ""
 
-#: apa7_bib_validator.py:498
+#: apa7_bib_validator.py:527
 msgid "Line spacing must be single."
 msgstr ""
 
-#: apa7_bib_validator.py:500
+#: apa7_bib_validator.py:529
 msgid "Paragraph must have hanging indent of 0.7 cm."
 msgstr ""
 
-#: apa7_bib_validator.py:504
+#: apa7_bib_validator.py:533
 msgid "Font must be Times New Roman."
 msgstr ""
 
-#: apa7_bib_validator.py:507
+#: apa7_bib_validator.py:536
 msgid "Font size must be 12 pt."
 msgstr ""
 
-#: apa7_bib_validator.py:515
+#: apa7_bib_validator.py:544
 msgid "Unknown"
 msgstr ""
 
-#: apa7_bib_validator.py:521
+#: apa7_bib_validator.py:550
 #, python-brace-format
 msgid "Entry {idx} ({typ}): "
 msgstr ""
 
-#: apa7_bib_validator.py:553
+#: apa7_bib_validator.py:582
 msgid "⚠️ Entries are not in alphabetical order by surname.\n"
 msgstr ""
 
-#: apa7_bib_validator.py:562
+#: apa7_bib_validator.py:591
 #, python-brace-format
 msgid "Total entries with errors: {errors}"
 msgstr ""
 
-#: apa7_bib_validator.py:564
+#: apa7_bib_validator.py:593
 msgid "✅ All entries look good!"
 msgstr ""
