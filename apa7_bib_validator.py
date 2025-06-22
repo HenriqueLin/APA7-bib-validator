@@ -449,7 +449,7 @@ def validate_authors(text, cite):
 
 def validate_year(text, cite):
     if not re.search(r'\(\d{4}(?:,\s*[A-Za-z]+ \d{1,2}(?:[-–]\d{1,2})?)?\)\.', text):
-        cite['errors'].append(_("Year block must be '(YYYY).' or '(YYYY, Month D-D).'"))
+        cite['errors'].append(_("Year block must be '(YYYY).' or '(YYYY, Month D–D).'"))
 
 def validate_title(text, cite):
     m = re.search(r'\)\.\s*(.+?)(?=[\.\?\!])', text)
