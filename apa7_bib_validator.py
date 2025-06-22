@@ -184,9 +184,9 @@ class ThesisCitation(CitationType):
         if not re.search(r'\]\.\s+', text):
             cite['errors'].append(_("After thesis-type bracket you need ']. ' before institution."))
         # title before the bracket
-        m = re.match(r'^(.*?)\s*\[', text)
+        m = re.match(r'\)\.\s*(.+?)(?=\s*\[|$)', text)
         if m:
-            title = m.group(1).strip()
+            title = m.group(1).strip().rstrip('.')
             if not is_snippet_italic(para, title):
                 cite['errors'].append(_("Thesis title must be italicized: '{title}'").format(title=title))
 
