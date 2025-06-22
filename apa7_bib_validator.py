@@ -176,6 +176,11 @@ class ThesisCitation(CitationType):
     detect_re = re.compile(r'\[(Doctoral dissertation|Master[’\']s thesis)\]', re.IGNORECASE)
 
     def validate(self, text, para, cite):
+        # first, catch the straight-apostrophe use:
+        if re.search(r"Master's thesis", text, re.IGNORECASE):
+            cite['errors'].append(
+                _("Use curly apostrophe (’)[U+2019] in “Master’s thesis”, not straight (')[U+0027].")
+            )
         if not re.search(r'\]\.\s+', text):
             cite['errors'].append(_("After thesis-type bracket you need ']. ' before institution."))
         # title before the bracket

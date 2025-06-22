@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-22 13:20+0100\n"
+"POT-Creation-Date: 2025-06-22 13:36+0100\n"
 "PO-Revision-Date: 2025-06-21 15:38+0100\n"
 "Last-Translator: U-YOGA-PRO-7\\Henrique Lin <henrique.lin99@gmail.com>\n"
 "Language-Team: Chinese (simplified)\n"
@@ -240,6 +240,10 @@ msgstr "字体必须为 Times New Roman。"
 #: apa7_bib_validator.py:501
 msgid "Font size must be 12 pt."
 msgstr "字体大小必须为12磅。"
+
+#: apa7_bib_validator.py:509
+msgid "Unknown"
+msgstr "未知"
 
 #: apa7_bib_validator.py:515
 #, python-brace-format
